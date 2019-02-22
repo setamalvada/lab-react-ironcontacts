@@ -12,7 +12,7 @@ class App extends Component {
         <div className="container mt-4">
           <div className="row">
             <div className="col-12">
-              <ContactList contacts={contacts.slice(0, 5)} />
+              <ContactList contacts={contacts} />
             </div>
           </div>
         </div>
