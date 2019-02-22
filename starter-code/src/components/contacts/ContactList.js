@@ -41,6 +41,12 @@ export default class ContactList extends Component {
     });
   }
 
+  onClickDeleteContact = (contact) => {
+    this.setState({
+      contacts: [...this.state.contacts].filter(c => c !== contact)
+    });
+  }
+
   render() {
     const Head = () => {
       return (
@@ -49,6 +55,7 @@ export default class ContactList extends Component {
             <th scope="col">Picture</th>
             <th scope="col">Name</th>
             <th scope="col">Popularity</th>
+            <th scope="col"></th>
           </tr>
         </thead>
       )
@@ -58,7 +65,7 @@ export default class ContactList extends Component {
       return (
         <tbody>
           {this.state.contacts.map((contact, index) => {
-            return <ContactRow key={index} {...contact} />
+            return <ContactRow key={index} {...contact} onClickDelete={this.onClickDeleteContact.bind(this, contact)}/>
           })}
         </tbody>
       )
