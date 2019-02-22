@@ -9,7 +9,8 @@ export default class ContactList extends Component {
     super(props);
     this.state = {
       contacts: this.props.contacts.slice(0, 5) || [],
-      allContacts: this.props.contacts || [] 
+      allContacts: this.props.contacts || [],
+      sortedBy: undefined
     }
   }
 
@@ -19,8 +20,25 @@ export default class ContactList extends Component {
     if (randContact) {
       this.setState({
         contacts: [...this.state.contacts, randContact]
-      });
+      }, () => this.state.sortedBy && this.onClickSortContacts(this.state.sortedBy));
     }
+  }
+
+  onClickSortContacts = (sortKey) => {
+    const contacts = [...this.state.contacts].sort((c1, c2) => {
+      switch (sortKey) {
+        case 'name':
+          return c1.name.localeCompare(c2.name);
+        case 'popularity':
+          return c2.popularity - c1.popularity;
+        default:
+          throw new Error(`Invalid short key ${sortKey}`)
+      }
+    });
+    this.setState({
+      contacts: contacts,
+      sortedBy: sortKey
+    });
   }
 
   render() {
@@ -46,9 +64,19 @@ export default class ContactList extends Component {
       )
     }
 
+    const Controls = () => {
+      return (
+        <div className="btn-group mb-4" role="group" aria-label="Basic example">
+          <button type="button" className="btn btn-secondary" onClick={this.onClickRandomContact}>+</button>
+          <button type="button" className={"btn btn-secondary " + (this.state.sortedBy === 'name' && 'active')} onClick={this.onClickSortContacts.bind(this, 'name')}>Name</button>
+          <button type="button" className={"btn btn-secondary " + (this.state.sortedBy === 'popularity' && 'active')} onClick={this.onClickSortContacts.bind(this, 'popularity')}>Popularity</button>
+        </div>
+      )
+    }
+
     return (
       <Fragment>
-        <button className="btn btn-primary mb-4" onClick={this.onClickRandomContact}>Add Random Contact</button>
+       <Controls />
         <table className="table">
           <Head />
           <Body />
