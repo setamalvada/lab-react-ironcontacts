@@ -1,24 +1,7 @@
-import React, { Component } from 'react';
-import './App.css';
-import ContactList from './components/contacts/ContactList';
-import contacts from './data/contacts.json';
-import Header from './components/misc/Header';
+import React from 'react'
+import TableContainer from './components/TableContainer'
+import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <div className="container mt-4">
-          <div className="row">
-            <div className="col-12">
-              <ContactList contacts={contacts} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+const App = () => <TableContainer />
 
-export default App;
+export default App
