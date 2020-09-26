@@ -1,21 +1,12 @@
-import React, { Component } from 'react';
-import './App.css';
-import ContactList from './components/contacts/ContactList';
-import contacts from './data/contacts.json';
-import Header from './components/misc/Header';
+import React from "react";
+import "./App.css";
+import ContactList from "./components/ContactList";
+import contacts from "./contacts.json";
 
-const App = () => {
+function App() {
   return (
     <div className="App">
-      <Header />
-
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-12">
-            <ContactList contacts={contacts} />
-          </div>
-        </div>
-      </div>
+      <ContactList contacts={contacts} />
     </div>
   );
 }
