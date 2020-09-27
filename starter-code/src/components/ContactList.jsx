@@ -20,18 +20,58 @@ class ContactList extends Component {
     console.log("clicked");
   };
 
+  sortByPopularity = () => {
+    console.log("clicked");
+    const sortedContact = [...this.state.contacts].sort((a, b) => {
+      return b.popularity - a.popularity;
+    });
+
+    this.setState({
+      contacts: sortedContact,
+    });
+  };
+
+  sortByName = () => {
+    const sortedContact = [...this.state.contacts].sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    });
+
+    this.setState({
+      contacts: sortedContact,
+    });
+    console.log("clicked");
+  };
+
+  deleteContact = (contacts) => {
+    console.log("clicked");
+    this.setState({
+      contacts: this.state.contacts.filter((c) => c !== contacts),
+    });
+  };
+
   render() {
     return (
       <div className="ContactBox">
         <button onClick={this.addNewContact}>Add Random contact</button>
-        <table className="media">
-          <tr>
-            <th>Picture</th>
-            <th>Name</th>
-            <th>Popularity</th>
-          </tr>
+        <button onClick={this.sortByPopularity}>Sort by popularity</button>
+        <button onClick={this.sortByName}>Sort by name</button>
+
+        <table className="media minimalistBlack">
+          <div class="header">
+            <div>Picture</div>
+            <div>Name</div>
+            <div>Popularity</div>
+            <div>Delete</div>
+          </div>
           {this.state.contacts.map((contact) => (
-            <ContactBox {...contact} />
+            <div>
+              <ContactBox {...contact} />
+              <div>
+                <button onClick={() => this.deleteContact(contact)}>
+                  Delete
+                </button>
+              </div>
+            </div>
           ))}
         </table>
       </div>
