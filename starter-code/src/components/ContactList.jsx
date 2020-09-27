@@ -52,19 +52,15 @@ class ContactList extends Component {
   render() {
     return (
       <div className="ContactBox">
-        <button onClick={this.addNewContact}>Add Random contact</button>
-        <button onClick={this.sortByPopularity}>Sort by popularity</button>
-        <button onClick={this.sortByName}>Sort by name</button>
+        <div class="buttons">
+          <button onClick={this.addNewContact}>Add Random contact</button>
+          <button onClick={this.sortByPopularity}>Sort by popularity</button>
+          <button onClick={this.sortByName}>Sort by name</button>
+        </div>
 
         <table className="media minimalistBlack">
-          <div class="header">
-            <div>Picture</div>
-            <div>Name</div>
-            <div>Popularity</div>
-            <div>Delete</div>
-          </div>
           {this.state.contacts.map((contact) => (
-            <div>
+            <div class="box">
               <ContactBox {...contact} />
               <div>
                 <button onClick={() => this.deleteContact(contact)}>

@@ -6,8 +6,8 @@ const ContacBox = (props) => {
       <div>
         <img src={props.pictureUrl} alt="imagen" />
       </div>
-      <div>{props.name}</div>
-      <div>{props.popularity.toFixed(2)}</div>
+      <div>Name: {props.name}</div>
+      <div>Popularity: {props.popularity.toFixed(2)}</div>
     </div>
   );
 };

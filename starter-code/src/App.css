@@ -6,8 +6,22 @@ table.minimalistBlack {
   border: 3px solid #000000;
   text-align: center;
   border-collapse: collapse;
+  margin: auto;
 }
 
 img {
   width: 100px;
+}
+
+.box {
+  margin: 20px;
+  border: 1px solid;
+}
+
+button {
+  margin: 5px;
+}
+
+.buttons {
+  margin: 10px;
 }
